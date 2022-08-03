@@ -8,12 +8,25 @@ import models
 class BaseModel:
     """The base_model superclass"""
 
-    def __init__(self):
-        """__init__ method for the superclass"""
+    def __init__(self, *args, **kwargs):
+        """__init__ method for the superclass
+        Args:
+            args (tuple): a tuple of all arguments passed
+            kwargs (dict): a dict of all keyword arguments
+                            and their value pairs
+        """
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != '__class__':
+                    if key == 'created_at' or key == 'updated_at':
+                        value = datetime.datetime.strptime(
+                                value, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, key, value)
 
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = self.created_at
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """string representatipon of the model instance"""
