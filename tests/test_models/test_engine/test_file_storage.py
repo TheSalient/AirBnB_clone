@@ -11,6 +11,7 @@ from models.base_model import BaseModel
 from models.state import State
 from models.engine.file_storage import FileStorage
 
+
 class testFileStorage(unittest.TestCase):
     '''
         Testing the FileStorage class
@@ -22,7 +23,7 @@ class testFileStorage(unittest.TestCase):
         '''
         self.storage = FileStorage()
         self.my_model = BaseModel()
-    
+
     def tearDown(self):
         '''
             Cleaning up.
@@ -33,7 +34,6 @@ class testFileStorage(unittest.TestCase):
         except FileNotFoundError:
             pass
 
-    
     def test_all_return_type(self):
         '''
             Tests the data type of the return value of the all method.
