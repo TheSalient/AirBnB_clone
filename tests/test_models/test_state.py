@@ -1,7 +1,7 @@
 #!/usr/bin/env  python3
 
 import unittest
-import pep8
+import os
 from models.state import State
 from models.base_model import BaseModel
 
@@ -20,14 +20,6 @@ class TestState(unittest.TestCase):
             os.remove("file.json")
         except FileNotFoundError:
             pass
-
-    def test_style_check(self):
-        """
-        Tests pep8 style
-        """
-        style = pep8.StyleGuide(quiet=True)
-        p = style.check_files(['models/state.py'])
-        self.assertEqual(p.total_errors, 0, "fix pep8")
 
     def test_is_subclass(self):
         self.assertTrue(issubclass(self.state1.__class__, BaseModel), True)

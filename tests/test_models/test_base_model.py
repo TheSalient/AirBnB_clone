@@ -2,7 +2,7 @@
 """Unittests for BaseModel"""
 import unittest
 import time
-from datetime import datetime
+import datetime
 from models.base_model import BaseModel
 
 
@@ -22,8 +22,8 @@ class TestBaseModel(unittest.TestCase):
         instance = BaseModel()
         self.assertIsInstance(instance.id, str)
         self.assertEqual(len(instance.id), 36)
-        self.assertIsInstance(instance.created_at, datetime)
-        self.assertIsInstance(instance.updated_at, datetime)
+        self.assertIsInstance(instance.created_at, datetime.datetime)
+        self.assertIsInstance(instance.updated_at, datetime.datetime)
 
     def test_base_model_updated_at_isEqual_created_at_init(self):
         """Tests if created_at and updated_at attrs are equal at init"""
@@ -37,7 +37,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(base_str, str)
         self.assertEqual(base_str[:11], '[BaseModel]')
         self.assertEqual(base_str[12:50], '({})'.format(base.id))
-        self.assertDictEqual(eval(base_str[51:]), base.__dict__)
+        self.assertEqual(eval(base_str[51:]), base.__dict__)
 
     def test_base_model_save_method(self):
         """BaseModel save method alters updated_at date"""
