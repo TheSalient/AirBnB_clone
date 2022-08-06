@@ -3,11 +3,11 @@
     Implementation for the Amenity with name public attributes.
 '''
 
-from models.base_model import BaseModel, Base
+from models.base_model import BaseModel
 import models
 
 
-class Amenity(BaseModel, Base):
+class Amenity(BaseModel):
     '''
         Implementation for the Amenity with name public attributes.
     '''
