@@ -1,8 +1,8 @@
 #!/usr/bin/env  python3
 
 import unittest
+import os
 from models.amenity import Amenity
-import pep8
 from models.base_model import BaseModel
 
 
@@ -20,14 +20,6 @@ class TestAmenity(unittest.TestCase):
             os.remove("file.json")
         except FileNotFoundError:
             pass
-
-    def test_style_check(self):
-        """
-        Tests pep8 style
-        """
-        style = pep8.StyleGuide(quiet=True)
-        p = style.check_files(['models/amenity.py'])
-        self.assertEqual(p.total_errors, 0, "fix pep8")
 
     def test_is_subclass(self):
         self.assertTrue(issubclass(self.amenity1.__class__, BaseModel), True)
