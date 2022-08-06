@@ -3,7 +3,6 @@
     Implementation for the City with name state_id public attributes.
 '''
 from models.base_model import BaseModel, Base
-import os
 
 
 class City(BaseModel, Base):

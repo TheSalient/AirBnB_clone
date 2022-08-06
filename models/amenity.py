@@ -4,7 +4,6 @@
 '''
 
 from models.base_model import BaseModel, Base
-import os
 import models
 
 
