@@ -3,11 +3,11 @@
     Implementation for the State with name public attributes.
 '''
 
-from models.base_model import BaseModel, Base
+from models.base_model import BaseModel
 import models
 
 
-class State(BaseModel, Base):
+class State(BaseModel):
     '''
         Implementation for the State with name public attributes.
     '''
