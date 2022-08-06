@@ -2,10 +2,10 @@
 '''
     Implementation for the City with name state_id public attributes.
 '''
-from models.base_model import BaseModel, Base
+from models.base_model import BaseModel,
 
 
-class City(BaseModel, Base):
+class City(BaseModel):
     '''
         Implementation for the City with name state_id public attributes.
     '''
