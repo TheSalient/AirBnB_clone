@@ -41,7 +41,7 @@ class FileStorage:
            <obj class name>.id
         '''
         key = str(obj.__class__.__name__) + "." + str(obj.id)
-        FileStorage.__objects[key] = obj
+        self.__objects[key] = obj
 
     def save(self):
         '''
@@ -49,10 +49,10 @@ class FileStorage:
             file (path: __file_path)
         '''
         objects_dict = {}
-        for key, val in FileStorage.__objects.items():
+        for key, val in self.__objects.items():
             objects_dict[key] = val.to_dict()
 
-        with open(FileStorage.__file_path, mode='w', encoding="utf-8") as fh:
+        with open(self.__file_path, mode='w', encoding="utf-8") as fh:
             json.dump(objects_dict, fh)
 
     def reload(self):
@@ -62,12 +62,11 @@ class FileStorage:
             nothing. If the file doesn’t exist, no exception should be raised)
         '''
         try:
-            with open(FileStorage.__file_path, encoding="UTF8") as fd:
-                FileStorage.__objects = json.load(fd)
-            for key, val in FileStorage.__objects.items():
-                class_name = val["__class__"]
-                class_name = models.classes[class_name]
-                FileStorage.__objects[key] = class_name(**val)
+            with open(self.__file_path, 'r', encoding='utf-8') as f:
+                json_dict = json.load(f)
+                for obj_dict in json_dict.values():
+                    cls = obj_dict['__class__']
+                    self.new(eval('{}({})'.format(cls, '**obj_dict')))
         except FileNotFoundError:
             pass
 
